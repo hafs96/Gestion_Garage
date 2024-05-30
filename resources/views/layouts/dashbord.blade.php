@@ -29,7 +29,7 @@
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
-                        <span class="title">Customers</span>
+                        <span class="title">Gestion des Clients</span>
                     </a>
                 </li>
 
@@ -38,43 +38,39 @@
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Messages</span>
+                        <span class="title">Gestion des Véhicules</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
+                            <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Help</span>
+                        <span class="title">Gestion du Stock</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
+                            <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Settings</span>
+                        <span class="title">Facturation</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Password</span>
+                        <span class="title">Demande de Rendez-vous</span>
                     </a>
                 </li>
-
                 <li>
-                    <a href="#">
+                    <a href="{{route('logout')}}">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
-                        <span class="title">Sign Out</span>
+                        <span class="title">Se deconnecter</span>
                     </a>
                 </li>
             </ul>

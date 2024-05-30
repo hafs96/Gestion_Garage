@@ -100,10 +100,9 @@ class LoginController extends Controller
      *
      * @return response()
      */
-    public function logout() {
-        Session::flush();
-        Auth::logout();
-
-        return Redirect('login');
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('/login')->withSuccess('You have successfully logged out.');
     }
 }
