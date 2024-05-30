@@ -17,11 +17,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    //•	Enregistrement des informations clients (nom, prénom, adresse, numéro de téléphone, adresse e-mail).
+    //Ajout, modification et suppression des informations liées aux véhicules.
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'Nom',
+        'Prenom',
+        'Adresse',
+        'NumeroTelephone',
+        'Email',
+        'role',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +49,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    //	Consultation facile des vehicules
+   /* public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
+    //	Consultation facile de l'historique des services effectuées
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function reparations()
+    {
+        return $this->hasMany(Reparation::class);
+    }
+*/
 }
