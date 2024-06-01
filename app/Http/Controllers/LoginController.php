@@ -32,21 +32,6 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(Request $request)
-    {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('You have Successfully loggedin');
-        }
-
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
-    }
     public function postRegistration(Request $request)
     {
         $request->validate([
@@ -55,14 +40,44 @@ class LoginController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'NumeroTelephone' => ['required', 'string', 'max:20'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'role' => ['required', 'in:client,mecanicien'],
+            'password' => ['required', 'string', 'min:6'],
+            'adresse' => ['required', 'string', 'max:255'],
         ]);
-
-        $data = $request->all();
-        $user = $this->create($data);
+        $user = User::create([
+            'Nom' => $request->Nom,
+            'Prenom' => $request->Prenom,
+            'username' => $request->username,
+            'email' => $request->email,
+            'NumeroTelephone' => $request->NumeroTelephone,
+            'password' => Hash::make($request->password),
+            'role' => 'client',
+            'adresse' => $request->adresse,
+        ]);
         Auth::login($user);
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+        return redirect()->route('home')->with('success', 'Registration successful.');
+    }
+
+    public function postLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended(route('admin.dashboard'))->withSuccess('You have Successfully logged in');
+                case 'client':
+                    return redirect()->intended(route('client.dashboard'))->withSuccess('You have Successfully logged in');
+                case 'mecanicien':
+                    return redirect()->intended(route('mec.dashboard'))->withSuccess('You have Successfully logged in');
+                default:
+                    return redirect('login')->withErrors('Role not recognized.');
+            }
+        }
+        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
 
     /**
@@ -70,26 +85,6 @@ class LoginController extends Controller
      *
      * @return response()
      */
-    public function dashboard()
-    {
-        if(Auth::check()){
-            return view('layouts\dashbord');
-        }
-        return redirect("login")->withSuccess('Opps! You do not have access');
-    }
-    public function create(array $data)
-    {
-      return User::create([
-            'Nom' => $data['Nom'],
-            'Prenom' => $data['Prenom'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'NumeroTelephone' => $data['NumeroTelephone'],
-            'password' => Hash::make($data['password']),
-            'role' => $data['role'],
-      ]);
-    }
-
     /**
      * Write code on Method
      *

@@ -19,14 +19,15 @@ class User extends Authenticatable
      */
     //•	Enregistrement des informations clients (nom, prénom, adresse, numéro de téléphone, adresse e-mail).
     //Ajout, modification et suppression des informations liées aux véhicules.
-
     protected $fillable = [
         'Nom',
         'Prenom',
-        'Adresse',
+        'username',
+        'email',
         'NumeroTelephone',
-        'Email',
+        'password',
         'role',
+        'adresse',
     ];
 
 
