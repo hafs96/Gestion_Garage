@@ -17,6 +17,7 @@
                     <th>Type de Carburant</th>
                     <th>Immatriculation</th>
                     <th>Client</th>
+                    <th>Photo Vehicule</th>
                     <th>Actions</th>
 
                 </tr>
@@ -30,6 +31,13 @@
                     <td>{{ $vehicule->fuel_type }}</td>
                     <td>{{ $vehicule->registration_number }}</td>
                     <td>{{ $vehicule->client->user->Nom }} {{ $vehicule->client->user->Prenom }}</td>
+                    <td>
+                        @if($vehicule->photo)
+                            <img src="{{ $vehicule->photo }}" alt="{{ $vehicule->brand }}" width="100">
+                        @else
+                            Pas d'image
+                        @endif
+                    </td>
                     <td>
                         <a href="{{route('editvehicule', $vehicule->id)}}" class="btn"><ion-icon name="settings-outline" style="color:#c56618;font-size:28px;" ></ion-icon></a>
                         <form action="{{route('Vdestroy',$vehicule->id)}}" method="POST" style="display:inline;">

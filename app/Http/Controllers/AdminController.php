@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Piece;
 use App\Imports\client;
 use App\Models\Vehicule;
 use Illuminate\Support\Arr;
@@ -167,31 +168,32 @@ class AdminController extends Controller
         }
         //Ajout de vehicule
         public function addV()
-        {
-            $clients = User::where('role', 'client')->with('clients')->get();
-            return view('admin.ajoutV',compact('clients'));
-        }
-        public function storeV(Request $request)
     {
-        // Validation des données du formulaire
+        // Récupérer tous les utilisateurs avec le rôle de client
+        $clients = User::where('role', 'client')->get();
+        return view('admin.ajoutV', compact('clients'));
+    }
+
+    public function storeV(Request $request)
+    {
         $validatedData = $request->validate([
             'brand' => 'required',
             'model' => 'required',
             'fuel_type' => 'required',
             'registration_number' => 'required|unique:vehicules,registration_number',
             'client_id' => 'required|exists:clients,id',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        if ($request->hasFile('photo')) {
+            $fileName = time() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('images'), $fileName);
+            $validatedData['photo'] = $fileName;
+        }
         Vehicule::create($validatedData);
         return redirect()->route('admin.vehicules')->with('success', 'Véhicule ajouté avec succès.');
     }
-
-
-
-
-
-
-
+   
 }
 
 

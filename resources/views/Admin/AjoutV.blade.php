@@ -1,13 +1,28 @@
 @extends('Admin.master')
+
 @section('content')
     <div class="container-fluid">
         <section class="table__header">
-            <h1>Ajouter une Vehicule</h1>
+            <h1>Ajouter un Véhicule</h1>
         </section>
         <section class="table__body">
-            <!--- End Ajouter client Modal--->
-            <!-- Modal ajouter un véhicule --><!-- Modal ajouter un véhicule -->
-            <form action="{{ route('ajouterVehicule') }}" method="POST">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <form action="{{ route('ajouterVehicule') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="brand">Marque:</label>
@@ -15,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="model">Modèle:</label>
-                    <input type="text" class="form-control" id="model" name="model" placeholder="Modele" required>
+                    <input type="text" class="form-control" id="model" name="model" placeholder="Modèle" required>
                 </div>
                 <div class="form-group">
                     <label for="fuel_type">Type de Carburant:</label>
@@ -31,7 +46,6 @@
                     <input type="text" class="form-control" id="registration_number" name="registration_number"
                         placeholder="Numéro d'Immatriculation" required>
                 </div>
-                <!-- Selectionner les clients -->
                 <div class="form-group">
                     <label for="client_id">Client:</label>
                     <select class="form-control" id="client_id" name="client_id" required>
@@ -39,18 +53,16 @@
                             <option value="{{ $client->id }}">{{ $client->Nom }} {{ $client->Prenom }}</option>
                         @endforeach
                     </select>
-                    <!-- ajouter un client si n'existe pas  -->
-                    <button type="button" class="btn showAddClientModal" data-toggle="modal"
-                        data-target="#AjouterModal">
-                        Ajouter Client
-                    </button>
                 </div>
-    </div>
-    <div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="submit" class="btn ajt">Ajouter</button>
-    </div>
-    </form>
-    </section>
+                <div class="form-group">
+                    <label for="photo">Photo du véhicule:</label>
+                    <input type="file" class="form-control" id="photo" name="photo">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn ajt">Ajouter</button>
+                    <a href="{{ route('admin.vehicules') }}" class="btn btn-secondary">Annuler</a>
+                </div>
+            </form>
+        </section>
     </div>
 @endsection

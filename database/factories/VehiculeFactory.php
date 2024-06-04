@@ -17,7 +17,7 @@ class VehiculeFactory extends Factory
             'model' => $this->faker->word,
             'fuel_type' => $this->faker->randomElement(['Essence', 'Diesel', 'Electrique', 'Hybride']),
             'registration_number' => $this->faker->unique()->bothify('??-###-??'),
-            'photo' => $this->faker->imageUrl(),
+            'photo' => $this->faker->imageUrl(640, 480, 'transport', true, 'car'),
         ];
     }
 }

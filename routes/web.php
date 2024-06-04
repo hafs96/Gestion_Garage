@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PieceController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MechanicController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -52,10 +53,16 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/vehicules/{id}', [AdminController::class, 'destroyVehicule'])->name('Vdestroy');
         Route::get('/addvehicule', [AdminController::class, 'addV'])->name('addV');
         Route::post('/ajouter-vehicule', [AdminController::class, 'storeV'])->name('ajouterVehicule');
-
-
-
     });
+});
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('pieces', PieceController::class);
+    Route::get('/liste', [PieceController::class, 'index'])->name('listepiece');
+    Route::get('/pieces/create', [PieceController::class, 'create'])->name('pieces.create');
+    Route::post('/pieces', [PieceController::class, 'store'])->name('pieces.store');
+    Route::get('/pieces/{piece}/edit', [PieceController::class, 'edit'])->name('pieces.edit');
+    Route::put('/pieces/{piece}', [PieceController::class, 'update'])->name('pieces.update');
+    Route::delete('/pieces/{piece}', [PieceController::class, 'destroy'])->name('pieces.destroy');
 });
 
 

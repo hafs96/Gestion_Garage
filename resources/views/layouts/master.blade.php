@@ -39,7 +39,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{route('admin.vehicules')}}">
                         <span class="icon">
                             <ion-icon name="construct-outline"></ion-icon>
                         </span>
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('listepiece')}}">
                         <span class="icon">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>

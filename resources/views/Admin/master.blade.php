@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('listepiece')}}">
                         <span class="icon">
                             <ion-icon name="library-outline"></ion-icon>
                         </span>
