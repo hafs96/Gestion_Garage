@@ -23,7 +23,7 @@ body {
 }
 
 .box {
-    background: #d2ccdb;
+    background: #e0c090;
     display: flex;
     flex-direction: column;
     padding: 35px 35px;
@@ -40,11 +40,11 @@ body {
     font-size: 40px;
     font-weight: 600;
     text-align: center;
-    color: #2B547E;
+    color: #c56313;
 }
 
 .form-box hr {
-    background-color: #2B547E;
+    background-color: #c56618;
     height: 5px;
     width: 20%;
     border: none;
@@ -62,7 +62,7 @@ body {
 .icon {
     padding: 15px;
     background: transparent;
-    color: #555;
+    color: #d67b13;
     background-color: #f1f1f1;
     min-width: 50px;
     text-align: center;
@@ -80,7 +80,7 @@ body {
 }
 
 .input-field:focus {
-    color: #2B547E;
+    color: #ca8010;
 }
 
 .remember {
@@ -100,7 +100,7 @@ body {
 
 .remember span a {
     text-decoration: none;
-    color: #2B547E;
+    color: #bb6d07;
 }
 
 .remember span a:hover {
@@ -110,7 +110,7 @@ body {
 .btn {
     height: 45px;
     width: 90%;
-    background-color: #2B547E;
+    background-color: #c56313;
     border: 0;
     border-radius: 5px;
     color: #fff;
@@ -133,7 +133,7 @@ body {
 
 .links a {
     text-decoration: none;
-    color: #2B547E;
+    color: #9c5809;
 }
 
 .links a:hover {

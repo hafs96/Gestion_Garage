@@ -1,11 +1,14 @@
 <?php
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MechanicController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +19,12 @@ use App\Http\Controllers\MechanicController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Route pour afficher le formulaire de demande de réinitialisation du mot de passe
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+// Route pour afficher le formulaire de réinitialisation du mot de passe
+Route::get('/reset-password/{token}/{email}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
 Route::get('/', [LoginController::class, 'show'])->name('home');
 
@@ -31,16 +40,21 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('role:admin')->prefix('admin')->group(function () {
         Route::get('/home', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('users', [AdminController::class, 'clients'])->name('admin.users');
-        Route::get('ajout', [AdminController::class, 'ajout'])->name('AjouterClt');
-        Route::post('ajout', [AdminController::class, 'storeClient'])->name('AjouterClt');
         Route::post("simple-excel/export", [AdminController::class, 'export'])->name('excel.export');
         Route::post('/import-clients', [AdminController::class, 'import'])->name('import');
-        Route::get('/clients/{id}', [AdminController::class, 'show']);
-        Route::get('/clients/{id}/edit', [AdminController::class, 'edit']);
-        Route::delete('/clients/{id}', [AdminController::class, 'destroy'])->name('SupprimerClt');
-        Route::get('modifier/{id}', [AdminController::class, 'modifier'])->name('ModifierClt');
-        Route::post('modifier/{id}', [AdminController::class, 'updateClient'])->name('ModifierClt');
-        Route::post('supprimer/{id}', [AdminController::class, 'deleteClient'])->name('SupprimerClt');
+        Route::get('/ShowClient/{id}', [AdminController::class, 'show'])->name('Modifclt');
+        Route::put('/EditClient/{id}', [AdminController::class, 'editClient'])->name('updateClient');
+        Route::delete('/DeleteClient/{id}', [AdminController::class, 'deleteClient'])->name('DeleteClient');
+        Route::post('ajouter-client', [AdminController::class, 'ajouterClient'])->name('ajouterClient');
+        Route::get('/vehicules', [AdminController::class, 'vehicules'])->name('admin.vehicules');
+        Route::get('/vehicules/{id}/edit', [AdminController::class, 'editVehicule'])->name('editvehicule');
+        Route::put('/vehicules/{id}', [AdminController::class, 'updateVehicule'])->name('updatevehicule');
+        Route::delete('/vehicules/{id}', [AdminController::class, 'destroyVehicule'])->name('Vdestroy');
+        Route::get('/addvehicule', [AdminController::class, 'addV'])->name('addV');
+        Route::post('/ajouter-vehicule', [AdminController::class, 'storeV'])->name('ajouterVehicule');
+
+
+
     });
 });
 

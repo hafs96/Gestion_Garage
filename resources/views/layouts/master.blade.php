@@ -12,16 +12,21 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 </head>
 <body>
-    <!-- =============== Navigation ================ -->
-    <div class="container">
-        <div class="navigation">
-            <ul>
+     <!-- =============== Navigation ================ -->
+     <div class="container-fluid">
+        <div class="navigation justify-content-between">
+            <ul class="sticky-top justify-content-between">
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
+                    <a href="{{route('admin.dashboard')}}">
+                        <span class="icon nav-item">
+                            <ion-icon name="car-outline" size="large"></ion-icon>
                         </span>
-                        <span class="title">@lang("Dashboard")</span>
+                        <span class="nav-item">
+                            <h3>@lang("MécanoHZian")</h3>
+                        </span>
+                        <span class="icon nav-item">
+                            <ion-icon name="build-outline"></ion-icon>
+                        </span>
                     </a>
                 </li>
                 <li>
@@ -36,7 +41,7 @@
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="construct-outline"></ion-icon>
                         </span>
                         <span class="title">Gestion des Véhicules</span>
                     </a>
@@ -44,7 +49,7 @@
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="library-outline"></ion-icon>
                         </span>
                         <span class="title">Gestion du Stock</span>
                     </a>
@@ -52,7 +57,7 @@
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="newspaper-outline"></ion-icon>
                         </span>
                         <span class="title">Facturation</span>
                     </a>
@@ -60,9 +65,17 @@
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="time-outline"></ion-icon>
                         </span>
                         <span class="title">Rendez-vous</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="mail-unread-outline"></ion-icon>
+                        </span>
+                        <span class="title">Gestion des Emails</span>
                     </a>
                 </li>
                 <li>
@@ -82,24 +95,16 @@
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
-
                 <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
+                    <span><h2 style="color:#c56618">Bienvenu <strong>{{ Auth::user()->Nom }} {{ Auth::user()->Prenom}}</strong></h2> </span>
                 </div>
-                <div class="langues">
-                    <select name="lstLangues" id="lstLangues">
-                        <option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }} >Anglais</option>
-                        <option value="fr" {{ session()->get('locale') == 'fr' ? 'selected' : '' }}>Français</option>
-                        <option value="ar" {{ session()->get('locale') == 'ar' ? 'selected' : '' }}>Arabe</option>
-                    </select>
-				</div>
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
+                    <!--Image de user qui est enrigistrer dans la base de donnes -->
+                    <img src="{{asset('storage/avatars/R.jpeg')}}" alt="">
                 </div>
+
             </div>
+    <div>
 
             <!-- ======================= Cards ================== -->
             <div class="cardBox">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+
 class LoginController extends Controller
 {
     /**
@@ -64,7 +65,9 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        $remember = $request->has('remember_me');
+        if (Auth::attempt($credentials,$remember)) {
+            $request->session()->regenerate();
             $user = Auth::user();
             switch ($user->role) {
                 case 'admin':

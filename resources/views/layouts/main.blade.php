@@ -17,50 +17,41 @@
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="{{route('client.dashboard')}}">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
-                        <span class="title">@lang("Dashboard")</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                        <span class="title">Gestion des Clients</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                        <span class="title">Gestion des Véhicules</span>
+                        <span class="title">Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="car-sport-outline"></ion-icon>
                         </span>
-                        <span class="title">Gestion du Stock</span>
+                        <span class="title">Mes Véhicules</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="build-outline"></ion-icon>
                         </span>
-                        <span class="title">Facturation</span>
+                        <span class="title">Mes Reparations </span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="receipt-outline"></ion-icon>
+                        </span>
+                        <span class="title">Mes Factures </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="alarm-outline"></ion-icon>
                         </span>
                         <span class="title">Demande de Rendez-vous</span>
                     </a>
@@ -97,7 +88,7 @@
                     </select>
 				</div>
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
+                    <img src="{{asset('storage/avatars/R.jpeg')}}" alt="">
                 </div>
             </div>
 

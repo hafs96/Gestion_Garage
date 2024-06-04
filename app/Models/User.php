@@ -50,6 +50,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+/*
+    public function mechanic()
+    {
+        return $this->hasOne(Mechanic::class);
+    }*/
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isClient()
+    {
+        return $this->role === 'client';
+    }
+
+    public function isMechanic()
+    {
+        return $this->role === 'mecanicien';
+    }
+}
     //	Consultation facile des vehicules
    /* public function vehicles()
     {
@@ -66,4 +91,4 @@ class User extends Authenticatable
         return $this->hasMany(Reparation::class);
     }
 */
-}
+
