@@ -6,15 +6,45 @@ use App\Models\User;
 use App\Models\Piece;
 use App\Imports\client;
 use App\Models\Vehicule;
+use Laravel\Dusk\Browser;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel;
+use App\Services\AdminActionService;
 use Spatie\SimpleExcel\SimpleExcelWriter;
-
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AdminController extends Controller
 {
     //
+    protected $adminActionService;
+
+    public function __construct(AdminActionService $adminActionService)
+    {
+        $this->adminActionService = $adminActionService;
+    }
+
+    public function action()
+    {
+        // Logique métier de l'action de l'administrateur
+
+        // Envoi de la notification administrative
+        $this->adminActionService->envoyerNotificationAdministrative();
+
+        // Autre logique si nécessaire
+    }
+    use DatabaseMigrations;
+
+    public function testEnvoyerNotificationAdministrative()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = User::factory()->create();
+
+            $browser->loginAs($user)
+                    ->visit('/admin/action')
+                    ->assertSee('Notification envoyée avec succès');
+        });
+    }
     public function dashboard()
     {
         return view('layouts.master');

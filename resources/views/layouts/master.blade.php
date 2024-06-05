@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('facture')}}">
+                    <a href="{{route('factures.index')}}">
                         <span class="icon">
                             <ion-icon name="newspaper-outline"></ion-icon>
                         </span>
