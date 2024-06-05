@@ -184,7 +184,6 @@ class AdminController extends Controller
             'client_id' => 'required|exists:clients,id',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
         if ($request->hasFile('photo')) {
             $fileName = time() . '.' . $request->photo->extension();
             $request->photo->move(public_path('images'), $fileName);
@@ -193,7 +192,7 @@ class AdminController extends Controller
         Vehicule::create($validatedData);
         return redirect()->route('admin.vehicules')->with('success', 'Véhicule ajouté avec succès.');
     }
-   
+
 }
 
 

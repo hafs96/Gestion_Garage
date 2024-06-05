@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mecanique extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id', 'specialisation',
     ];
@@ -20,5 +20,10 @@ class Mecanique extends Model
     public function reparations()
     {
         return $this->hasMany(Reparation::class);
+    }
+
+    public function rendezvous()
+    {
+        return $this->hasMany(Rendezvous::class, 'mec_id');
     }
 }

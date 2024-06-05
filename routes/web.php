@@ -7,7 +7,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PieceController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\FactureController;
 use App\Http\Controllers\MechanicController;
+use App\Http\Controllers\RendezvousController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 /*
@@ -63,7 +66,21 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/pieces/{piece}/edit', [PieceController::class, 'edit'])->name('pieces.edit');
     Route::put('/pieces/{piece}', [PieceController::class, 'update'])->name('pieces.update');
     Route::delete('/pieces/{piece}', [PieceController::class, 'destroy'])->name('pieces.destroy');
+    Route::get('/notifications/low-stock', [NotificationController::class, 'lowStockNotifications'])->name('notifications.lowStock');
+    Route::post('/pieces/{id}/replenish', [NotificationController::class, 'replenishStock'])->name('pieces.replenish');
 });
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/lrendezvous', [RendezvousController::class, 'index'])->name('RDVindex');
+    Route::get('/rendezvous/create', [RendezvousController::class, 'create'])->name('rdvcreate');
+    Route::post('/rendezvous', [RendezvousController::class, 'store'])->name('rendezvous.store');
+    Route::get('/rendezvous/{rendezvous}', [RendezvousController::class, 'show'])->name('rendezvous.show');
+    Route::get('/rendezvous/{rendezvous}/edit', [RendezvousController::class, 'edit'])->name('rendezvous.edit');
+    Route::put('/rendezvous/{rendezvous}', [RendezvousController::class, 'update'])->name('rendezvous.update');
+    Route::delete('/rendezvous/{rendezvous}', [RendezvousController::class, 'destroy'])->name('rendezvous.destroy');
+});
+Route::resource('factures', FactureController::class);
+Route::get('/factures', [FactureController::class, 'index'])->name('facture');
+
 
 
 

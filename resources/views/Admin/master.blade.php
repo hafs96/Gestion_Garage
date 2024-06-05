@@ -70,6 +70,14 @@
                         <span class="title">Gestion des Clients</span>
                     </a>
                 </li>
+                <li>
+                    <a href="">
+                        <span class="icon">
+                            <ion-icon name="walk-outline"></ion-icon>
+                        </span>
+                        <span class="title">Gestion des Mecaniciens</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="{{route('admin.vehicules')}}">
@@ -88,7 +96,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('facture')}}">
                         <span class="icon">
                             <ion-icon name="newspaper-outline"></ion-icon>
                         </span>
@@ -96,7 +104,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('RDVindex')}}">
                         <span class="icon">
                             <ion-icon name="time-outline"></ion-icon>
                         </span>
@@ -104,11 +112,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{route('notifications.lowStock')}}">
                         <span class="icon">
                             <ion-icon name="mail-unread-outline"></ion-icon>
                         </span>
-                        <span class="title">Gestion des Emails</span>
+                        <span class="title">Gestion des Notifications</span>
                     </a>
                 </li>
                 <li>

@@ -33,4 +33,5 @@ class ResetPasswordController extends Controller
         ['token' => $token, 'email' ]
     );
 }
+
 }

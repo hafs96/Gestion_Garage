@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('factures', function (Blueprint $table) {
+        Schema::create('rendezvouses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reparation_id');
-            $table->dateTime('date')->nullable();
-            $table->decimal('total_amount', 10, 2);
             $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('mec_id');
+            $table->date('date');
+            $table->time('time');
+            $table->string('status');
             $table->timestamps();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->foreign('reparation_id')->references('id')->on('reparations')->onDelete('cascade');
+            $table->foreign('mec_id')->references('id')->on('mecaniques')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('factures');
+        Schema::dropIfExists('rendezvouses');
     }
 };
