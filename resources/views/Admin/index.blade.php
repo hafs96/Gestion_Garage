@@ -33,6 +33,7 @@
                     <td>
                         <a href="" class="btn btn-info">Voir</a>
                         <a href="" class="btn btn-warning">Modifier</a>
+                        <a href="{{ route('factures.pdf', $facture->id) }}" class="btn btn-secondary">Télécharger PDF</a>
                         <form action="" method="POST" style="display:inline-block;">
                             @csrf
                             @method('DELETE')

@@ -77,9 +77,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/rendezvous/{rendezvous}/edit', [RendezvousController::class, 'edit'])->name('rendezvous.edit');
     Route::put('/rendezvous/{rendezvous}', [RendezvousController::class, 'update'])->name('rendezvous.update');
     Route::delete('/rendezvous/{rendezvous}', [RendezvousController::class, 'destroy'])->name('rendezvous.destroy');
+    Route::resource('factures', FactureController::class);
+    Route::get('factures/{facture}/pdf', [FactureController::class, 'downloadPDF'])->name('factures.pdf');
 });
-Route::resource('factures', FactureController::class);
-Route::get('/factures', [FactureController::class, 'index'])->name('facture');
+
 
 
 

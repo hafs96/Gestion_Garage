@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Facture;
+use PDF;
 use Illuminate\Http\Request;
 
 class FactureController extends Controller
@@ -67,4 +68,9 @@ class FactureController extends Controller
             ->with('success', 'Facture supprimée avec succès.');
     }
 
+    public function downloadPDF(Facture $facture)
+    {
+        $pdf = PDF::loadView('pdf.pdf', compact('facture'));
+        return $pdf->download('facture_'.$facture->id.'.pdf');
+    }
 }
